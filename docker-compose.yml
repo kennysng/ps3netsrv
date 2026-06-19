@@ -1,0 +1,12 @@
+services:
+  ps3netsrv:
+    container_name: ps3netsrv
+    image: shawly/ps3netsrv:latest
+    restart: unless-stopped
+    network_mode: host # Ensures the PS3 easily finds the server over your local network
+    environment:
+      - TZ: Asia/Shanghai
+      - USER_ID: 1000 # Replace with your host user's UID (run `id -u` in terminal)
+      - GROUP_ID: 1000 # Replace with your host user's GID (run `id -g` in terminal)
+    volumes:
+      - "/Volumes/DOCK SSD/PS3:/games:rw" # Replace with the actual path to your games folder
